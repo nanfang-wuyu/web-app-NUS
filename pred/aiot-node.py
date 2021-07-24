@@ -2,10 +2,8 @@ import time
 from datetime import datetime
 
 import RPi.GPIO as GPIO
-from gpiozero import InputDevice
 
-
-import Adafruit_DHT 
+import Adafruit_DHT
 from gpiozero import MotionSensor
 import sqlite3
 

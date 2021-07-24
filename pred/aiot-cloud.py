@@ -4,7 +4,7 @@ import sqlite3
 
 
 
-app = connexion.App(__name__, specification_dir='./')
+app = connexion.App(__name__, specification_dir='../')
 app.add_api('cloud.yml')
 
 
