@@ -1,0 +1,127 @@
+
+
+body{
+	background: rgba(30, 125, 180, 0.603);
+	color: yellow;
+	padding:1%
+} 
+
+
+.button {
+	font: bold 15px Arial;
+	text-decoration: none;
+	background-color: #EEEEEE;
+	color: #333333;
+	padding: 2px 6px 2px 6px;
+	border-top: 1px solid #CCCCCC;
+	border-right: 1px solid #333333;
+	border-bottom: 1px solid #333333;
+	border-left: 1px solid #CCCCCC;
+}
+
+
+.container {
+	/* background-size: cover;
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe',GradientType=0 ); IE6-9 */
+  padding: 20px;
+}
+
+.led-box {
+  height: 30px;
+  width: 25%;
+  margin: 10px 0;
+  float: left;
+}
+
+.led-box p {
+  font-size: 12px;
+  text-align: center;
+  margin: 1em;
+}
+
+
+
+.led-red {
+  margin: 0 auto;
+  width: 24px;
+  height: 24px;
+  background-color: #F00;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 12px;
+  -webkit-animation: redon 0.5s infinite;
+  /* -moz-animation: blinkRed 0.5s infinite;
+  -ms-animation: blinkRed 0.5s infinite;
+  -o-animation: blinkRed 0.5s infinite;
+  animation: blinkRed 0.5s infinite; */
+}
+
+
+@-webkit-keyframes redon {
+  from{
+      background-color: #f00;
+  }
+  to {
+    background-color: #f00;
+  }
+}
+
+@-webkit-keyframes off {
+  
+  from{
+      background-color: rgb(14, 1, 1);
+  }
+  to {
+      background-color: rgb(14, 1, 1);
+    }
+}
+
+
+.led-green {
+  margin: 0 auto;
+  width: 24px;
+  height: 24px;
+  background-color: #ABFF00;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #304701 0 -1px 9px, #89FF00 0 2px 12px;
+}
+
+@-webkit-keyframes greenon {
+  from{
+      background-color: #ABFF00;
+  }
+  to {
+    background-color: #ABFF00;
+  }
+}
+
+
+.led-blue {
+  margin: 0 auto;
+  width: 24px;
+  height: 24px;
+  background-color: #24E0FF;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #006 0 -1px 9px, #3F8CFF 0 2px 14px;
+}
+
+@-webkit-keyframes blueon {
+  from{
+      background-color: #24E0FF;
+  }
+  to {
+    background-color: #24E0FF;
+  }
+}
+
+.led-grey {
+  margin: 0 auto;
+  width: 24px;
+  height: 24px;
+  background-color: #5b5e57;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #304701 0 -1px 9px, #989c93 0 2px 12px;
+}
+
+img{
+	display: display: inline-block
+}

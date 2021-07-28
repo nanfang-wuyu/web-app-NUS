@@ -2,8 +2,10 @@ import time
 from datetime import datetime
 
 import RPi.GPIO as GPIO
+from gpiozero import InputDevice
 
-import Adafruit_DHT
+
+import Adafruit_DHT 
 from gpiozero import MotionSensor
 import sqlite3
 
@@ -13,6 +15,9 @@ import _thread as thread
 import requests
 import json
 import IR
+
+import threading
+lock = threading.Lock()
 
 
 def init():
@@ -100,6 +105,7 @@ def listenCommand():
 def relaySensorData():
     
     base_uri = 'http://169.254.58.193:5000/'
+    # base_uri = 'http://169.254.47.65:5000/' 
     globaltemperature_uri = base_uri + 'api/globaltemperature'
     headers = {'content-type': 'application/json'}
     
@@ -111,7 +117,10 @@ def relaySensorData():
         
         localDbConn = sqlite3.connect('dht.db')
         c = localDbConn.cursor()
+        # c = dbConn.cursor()
+        # lock.acquire(True)
         c.execute('SELECT id, reading_time, devicename, humidity, temperature, moved,label, tocloud FROM readings WHERE tocloud = 0')
+        # lock.release()
         results = c.fetchall()
         
         for result in results:
@@ -127,8 +136,11 @@ def relaySensorData():
             
             req = requests.put(globaltemperature_uri, headers = headers, data = json.dumps(gtemp))
 			
+            # lock.acquire(True)
             c.execute('UPDATE readings SET tocloud = 1 WHERE id = ' + str(result[0]))
-                
+            # lock.release()
+        
+        # dbConn.commit()
         c.close()
         localDbConn.commit()
         localDbConn.close()
@@ -139,7 +151,9 @@ def saveSensorData(humidity,temperature, moved,status):
     
     c = dbConn.cursor()
     sql = "INSERT INTO readings (devicename, temperature, humidity, moved,label) VALUES('school'," + str(temperature) + ", " + str(humidity) + ", " + str(moved) + ", " + str(status) + ")"
+    # lock.acquire(True)
     c.execute(sql)
+    # lock.release()
 
     dbConn.commit()
     c.close()
@@ -170,7 +184,7 @@ def main():
                 print('no move')
                 moved = 0
             
-            print("Waiting for infra signal")
+            # print("Waiting for? infra signal")
             # GPIO.wait_for_edge(27, GPIO.FALLING)
             # code = IR.on_ir_receive(27)
             # if code:

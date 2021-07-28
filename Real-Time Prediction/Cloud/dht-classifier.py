@@ -47,7 +47,7 @@ def main():
 			X_train, X_test, y_train, y_test = train_test_split(X, y, train_size = 0.7, test_size = 0.3, shuffle = True, random_state=random_state, stratify=df['label'])
 			X_headers = df.drop('timestamp', axis=1).drop('label', axis=1).columns.values
 			
-			clf = tree.DecisionTreeClassifier(criterion='gini', splitter='best',max_depth=3)
+			clf = tree.DecisionTreeClassifier(criterion='gini', splitter='best', max_depth=3)
 			clf = clf.fit(X_train, y_train)
 			y_train_pred = clf.predict(X_train)
 
@@ -63,7 +63,7 @@ def main():
 			dot_data = tree.export_graphviz(clf, out_file=None, feature_names=X_headers, class_names=['0','1','2','3'],
 			filled=True, rounded=True, special_characters=True)
 			graph = graphviz.Source(dot_data)
-			graph.render("dht-train")
+			graph.render("dht-train-dep3")
 			
 			# export the classifier model for future use
 			dump(clf, 'dht-classifier.joblib')

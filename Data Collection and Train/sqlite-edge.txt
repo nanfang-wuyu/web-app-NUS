@@ -1,0 +1,12 @@
+"""
+CREATE TABLE readings(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+   reading_time DATETIME,
+   devicename TEXT,
+   humidity REAL,
+   temperature REAL,
+   moved BOOLEAN,
+   label REAL,
+   tocloud BOOLEAN DEFAULT 0
+);
+"""

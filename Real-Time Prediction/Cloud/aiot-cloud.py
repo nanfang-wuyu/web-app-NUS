@@ -4,7 +4,7 @@ import sqlite3
 
 
 
-app = connexion.App(__name__, specification_dir='../')
+app = connexion.App(__name__, specification_dir='./')
 app.add_api('cloud.yml')
 
 
@@ -21,7 +21,7 @@ def index():
 
 	for result in results:
 		
-		htmlTableRows += '<tr><td>' + str(result[0]) + '</td><td>' + str(result[1]) + '</td><td>' + str(result[2]) + '</td><td>' + str(result[3]) + '</td><td>' + str(result[4]) + '</td><td>' + str(result[5]) + '</td><td>' + str(result[6]) +  '</td></tr>'
+		htmlTableRows += '<tr><td>' + str(result[0]) + '</td><td>' + str(result[1]) + '</td><td>' + str(result[2]) + '</td><td>' + str(result[3]) + '</td><td>' + str(result[4]) + '</td><td>' + str(result[5]) + '</td><td>' + str(result[6]) + '</td></tr>'
     
 	html = '<html><head><title>Cloud Server</title><meta http-equiv="refresh" content="10" /></head><body>'    
 	html += '<h1>Global Historical Sensor Data</h1><table width="100%" cellspacing="1" cellpadding="3" border="1"><tr><th>ID</th><th>Device Name</th><th>Timestamp</th><th>Temperature</th><th>Humidity</th><th>Moving People</th><th>Model</th></tr>' + htmlTableRows + '</table></body></html>'

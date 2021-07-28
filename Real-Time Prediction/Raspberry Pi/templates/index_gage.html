@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>DHT Data Sensor</title>
+    <link rel="stylesheet" href='../static/style.css'/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+		body {
+			text-align: center;
+		}
+
+		#g1,
+		#g2,
+		#g3 {
+			width: 200px;
+			height: 160px;
+			display: inline-block;
+			margin: 1em;
+		}
+
+    </style>
+</head>
+
+<body>
+	<h1>DHT Sensor Data </h1>
+    <div id="g1"></div>
+	<div id="g2"></div>
+	<div id="g3"></div>
+	
+	<hr>
+
+	<h3>Model Status</h3>
+	<div class="container">
+		<div class="led-box">
+			<div class="led-grey" id="grey"></div>
+			<p>off</p>
+		  </div>
+	  <div class="led-box">
+		<div class="led-red" id="red"></div>
+		<p>Cooling</p>
+	  </div>
+	  <div class="led-box">
+		<div class="led-green" id="green"> </div>
+	<p>Dehumidification</p>
+    </div>
+	  <div class="led-box">
+		<div class="led-blue" id="blue"></div>
+		<p>Cooling&Dehumidification</p>
+	  </div>
+	</div>
+	
+
+	<br>
+	<br>
+	<br>
+	<hr>
+	
+	<h3> Last Sensors Reading: {{ time }} ==> <a href="/"class="button">REFRESH</a></h3>	
+
+	<hr>
+	
+
+	<h3> <a href="/raspberry"class="button">Recall</a></h3>	
+	
+	<img src="/plot/temp" alt="Image Placeholder 1" width="49%">
+	<img src="/plot/hum" alt="Image Placeholder 2" width="49%">
+	
+	<p> @2021 Developed by Group 6</p>
+    
+    <script src="../static/raphael-2.1.4.min.js"></script>
+    <script src="../static/justgage.js"></script>
+    <script>
+		var g1,g2 ,g3;
+		document.addEventListener("DOMContentLoaded", function(event) {
+			g1 = new JustGage({
+				id: "g1",
+				value: {{temp}},
+				valueFontColor: "yellow",
+				titleFontColor: "yellow",
+				min: -10,
+				max: 50,
+				title: "Temperature",
+				label: "Celcius"
+			});
+
+			g2 = new JustGage({
+				id: "g2",
+				value: {{hum}},
+				valueFontColor: "yellow",
+				titleFontColor: "yellow",
+				min: 0,
+				max: 100,
+				title: "Humidity",
+				label: "%"
+			});
+
+			g3 = new JustGage({
+				id: "g3",
+				value: {{moved}},
+				valueFontColor: "yellow",
+				titleFontColor: "yellow",
+				min: 0,
+				max: 1,
+				title: "People Detection",
+				label: ""
+			});
+
+		});
+
+		
+
+
+		if ({{label}}==3)
+		{	
+			document.getElementById("blue").style.animation="blueon 10000s infinite";
+			document.getElementById("red").style.animation="off 10000s infinite";
+			document.getElementById("green").style.animation="off 10000s infinite";
+			
+		}
+		else if ({{label}}==2)
+		{
+			document.getElementById("green").style.animation="greenon 10000s infinite";
+			document.getElementById("red").style.animation="off 10000s infinite";
+			document.getElementById("blue").style.animation="off 10000s infinite";
+		}
+		else if ({{label}}==1)
+		{
+			document.getElementById("red").style.animation="redon 10000s infinite";
+			document.getElementById("green").style.animation="off 10000s infinite";
+			document.getElementById("blue").style.animation="off 10000s infinite";
+		}
+		else
+		{
+			document.getElementById("blue").style.animation="off 10000s infinite";
+			document.getElementById("red").style.animation="off 10000s infinite";
+			document.getElementById("green").style.animation="off 10000s infinite";
+		}
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+
+
